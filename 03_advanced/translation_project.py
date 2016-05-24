@@ -15,6 +15,39 @@ class BioMolecule(object):
         self.name = name
         self.mass = mass
 
+
+    @property
+    def id(self):
+        return self._id
+    
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def mass(self):
+        return self._mass
+    
+    @mass.setter
+    def mass(self, value):
+        if not isinstance(value, float):
+            raise TypeError("Mass must be a float.")
+        self._mass = value
+
+    @id.setter
+    def id(self, value):
+        if not isinstance(value, int):
+            raise TypeError("id must be an integer.")
+        self._id = value
+    
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise TypeError("name must be a string.")
+        self._name = value
+
+
     # 1. Write setter and getter methods for all attributes.
     #    Use @property decorators as dicussed in the lecture
     # 2. In the setter methods check for the type of each attribute.
