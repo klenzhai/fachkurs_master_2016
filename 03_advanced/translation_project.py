@@ -91,7 +91,7 @@ class Polymer(BioMolecule):
         """
          Enables changing of sequence characters via the indexing operators.       
         """
-        tmp = list(sequence)
+        tmp = list(self.sequence)
         tmp[key] = value
         self.sequence = "".join(tmp)
 
