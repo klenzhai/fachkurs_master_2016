@@ -50,12 +50,16 @@ def Guess_type():
 def Demo(number, i):
     number1 = number
     number2 = randint(0,100)
+    max = 100
+    min = 0
     while number2 != number1:
         if number2 < number1:
-            number2 = randint(number2, 100)
+            min = number2+1
+            number2 = randint(min, max)
             i = i+1
         if number2 > number1:
-            number2 = randint(0, number2)
+            max = number2-1
+            number2 = randint(min, max)
             i = i+1 
         print("The number the computer should guess is " + str(number1) + "\n The number the computer guessed is " + str(number2))
     else:
