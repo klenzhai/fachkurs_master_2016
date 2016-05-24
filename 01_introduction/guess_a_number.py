@@ -4,13 +4,12 @@ from random import randint
 
 
 number = randint(0,100)
-guess = int(input("Welcome to guess a number, what is your guess?\n"))
-while guess < 0 or guess > 100:
-    print("Please stay in the boundaries of 0 to 100.")
-    guess = int(input("Enter your number.\n"))
-i = 1
+print("Welcome to guess a number!\n")
 
-def Game(guess, number, i):
+
+def Game(number, i):
+    guess = Guess() 
+    
     while guess != number:
         if guess < number:
             print("No, too low!")
@@ -18,21 +17,54 @@ def Game(guess, number, i):
         if guess > number:
             print("No, too high!")
             i = i+1
-        guess = int(input("Another Guess?\n"))
-        while guess < 0 or guess > 100:
-            print("Please stay in the boundaries of 0 to 100.")
-            guess = int(input("Enter your number.\n"))
+        guess = Guess()
+    
     else:
         print("You're right! And you only needed " + str(i) + " Guesses.")
-        i = 1
         again = input("Want to play again? (y/n)")
         if again == "y":
             number = randint(0,100)
-            Game(guess, number, i)
+            Game(number, 1)
         else:
             print("Good Bye!")
             
+def Guess():
+    guess = Guess_type()
+    while guess < 0 or guess > 100:
+        print("Please stay in the boundaries of 0 to 100.")
+        guess = Guess_type()
+    return guess
 
-Game(guess, number, i)
+def Guess_type():
+    error = False
+    while error == False:
+        try:
+            guess = input("What is your Guess?\n")
+            guess = int(guess)
+            error = True
+        except:
+            print("Try again")
+    return guess
 
+
+def Demo(number, i):
+    number1 = number
+    number2 = randint(0,100)
+    while number2 != number1:
+        if number2 < number1:
+            number2 = randint(number2, 100)
+            i = i+1
+        if number2 > number1:
+            number2 = randint(0, number2)
+            i = i+1 
+        print("The number the computer should guess is " + str(number1) + "\n The number the computer guessed is " + str(number2))
+    else:
+        print("The computer took " + str(i) + " tries.")
+
+
+which = input("What do you want to play, the demo version (enter 'd'), or the normal game (enter 'n')?\n")
+if which == "d":
+    Demo(number, 1)
+elif which == "n":
+    Game(number, 1)
 
