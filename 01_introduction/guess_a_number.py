@@ -1,30 +1,38 @@
+#Guess a Number!
+
 from random import randint
 
 
-def guess_a_number():
-    """Game to guess a number the computer randomly generated."""
+number = randint(0,100)
+guess = int(input("Welcome to guess a number, what is your guess?\n"))
+while guess < 0 or guess > 100:
+    print("Please stay in the boundaries of 0 to 100.")
+    guess = int(input("Enter your number.\n"))
+i = 1
 
-    # TODO:
-    # generate a random number (uniformly distributed between 0 and 100)
-    # read input from the user and validate that the input is numeric (use the function check_raw)
-    # check whether the number was guessed 
-    # implement the functions evaluate_my_number, which checks whether the number is too high or too low
-    # and print this information to the user
-    # let the computer guess, therefore implement the demo_a_number function
-    
+def Game(guess, number, i):
+    while guess != number:
+        if guess < number:
+            print("No, too low!")
+            i = i+1
+        if guess > number:
+            print("No, too high!")
+            i = i+1
+        guess = int(input("Another Guess?\n"))
+        while guess < 0 or guess > 100:
+            print("Please stay in the boundaries of 0 to 100.")
+            guess = int(input("Enter your number.\n"))
+    else:
+        print("You're right! And you only needed " + str(i) + " Guesses.")
+        i = 1
+        again = input("Want to play again? (y/n)")
+        if again == "y":
+            number = randint(0,100)
+            Game(guess, number, i)
+        else:
+            print("Good Bye!")
+            
+
+Game(guess, number, i)
 
 
-def check_raw(print_string='Please try again: '):
-    """Gets the string, raw_input should print, checks and returns the input."""
-    return checked_int
-
-
-def evaluate_my_number(guess, random_number):
-    """Is the guess to high or to low? Guess again!"""
-
-
-def demo_a_number(random_number):
-    """The computer tries to guess the number"""
-
-    
-guess_a_number()
